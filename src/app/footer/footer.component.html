@@ -1,0 +1,78 @@
+<footer class="page-footer" id="bgFooter">
+
+  <div class="col-md-12 d-flex justify-content-center" id="pixelsListaDois">
+    <img class="pr-1 ml-2" src="../../assets/img/macanzinha.png" alt="" width="87px" height="88px">
+  </div>
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-4" id="pixelsListaUm">
+        <ul class="navbar-nav d-flex mr-auto py-5">
+          <li><img class="mb-3" src="https://i.imgur.com/h5ORQ3z.png" alt="" width="32px" height="32px"></li>
+          <li><a routerLink="/home">
+              <h3 style="color: #074D27;">Home</h3>
+            </a></li>
+          <li><a routerLink="/product">
+              <h3 style="color: #074D27;">Produtos</h3>
+            </a></li>
+          <li><a routerLink="/aboutUs">
+              <h3 style="color: #074D27;">Sobre Nós</h3>
+            </a></li>
+          <li><a routerLink="/contact">
+              <h3 style="color: #074D27;">Contatos</h3>
+            </a></li>
+          <li><a *ngIf="logado()" [routerLink]="['/profile', id]" >
+              <h3 style="color: #7E0707;">Perfil</h3>
+            </a>
+            <a *ngIf="noLogado()" routerLink="/login">
+              <h3 style="color: #7E0707;">Perfil</h3>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <ul class="navbar-nav d-flex pt-5 align-items-center" id="ulPaddingTop">
+          <li>
+            <a href="https://github.com/Tickets-for-Snacks">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Tickets-for-Snacks">
+              <h4 style="color: #7E0707;">© 2022 Copyright: Ticket for Snacks</h4>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4" id="pixelsListaTres">
+        <ul class="navbar-nav d-flex ml-auto py-5 align-items-end">
+          <li><img class="mb-3" src="https://i.imgur.com/IX2aOau.png" alt="" width="32px" height="32px"></li>
+          <li><a href="https://www.linkedin.com/in/augustocesarsl/">
+              <h3 style="color: #7E0707;">Augusto César</h3>
+            </a></li>
+          <li><a href="https://www.linkedin.com/in/eloisa-pascon-a5b36a19a">
+              <h3 style="color: #7E0707;">Eloisa Pascon</h3>
+            </a></li>
+          <li><a href="https://www.linkedin.com/in/elenilson-sousa-214a97238/
+            ">
+              <h3 style="color: #7E0707;">Elenilson Santos</h3>
+            </a></li>
+          <li><a href="https://www.linkedin.com/in/luiza-souza-06b1b0202/">
+              <h3 style="color: #7E0707;">Luiza Souza</h3>
+            </a></li>
+          <li><a href="https://www.linkedin.com/in/vitor-aguilar/">
+              <h3 style="color: #7E0707;">Vitor Hugo</h3>
+            </a></li>
+          <li><a href="https://www.linkedin.com/in/vitoria-rodrigues-ux-ui-designer-jr-front-end-jr/">
+              <h3 style="color: #7E0707;">Vitória Rodrigues</h3>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+</footer>

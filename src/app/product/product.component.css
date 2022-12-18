@@ -1,0 +1,32 @@
+#bgColorComplete{
+  height: 100vh !important;
+  background-color: rgba(255, 252, 101, 0.459) !important;
+}
+
+.paddingZero{
+  padding: 0;
+  margin: 0;
+}
+
+.fs-100{
+  font-size: 100px;
+}
+
+#selected:focus{
+  background-color: green !important;
+}
+
+#minSize{
+  min-height: 250px;
+  max-height: 250px;
+}
+
+.card{
+  border: 1px solid red;
+}
+
+
+
+
+
+

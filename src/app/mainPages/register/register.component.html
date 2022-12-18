@@ -1,0 +1,86 @@
+<div class="container-fluid pt-5 pb-5" id="imgbg">
+
+  <div class="row d-flex align-items-center mb-5" id="paddingCenterTop">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 rounded mb-5" id="bgRegister">
+
+      <h1 class="text-center mb-3 pt-3">Cadastro</h1>
+
+      <div class="row d-flex justify-content-center ">
+        <div class="col-md-5 ">
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input [(ngModel)]="user.usuario" #emailUser="ngModel" type="email" required maxlength="50"
+              placeholder="Digite o seu email" class="rounded-pill form-control">
+
+            <h6 *ngIf="emailUser.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+
+          </div>
+
+          <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input (input)="confirmSenha($event)" class="form-control " type="password" name="senha" id="senha"
+              placeholder="Sua senha ">
+
+            <h6>Minimo de 8 caractéres.</h6>
+
+          </div>
+
+          <div class="form-group">
+            <label for="foto">Link da Foto</label>
+            <input [(ngModel)]="user.foto" class="form-control" type="text" name="foto" id="foto"
+              placeholder="Link da Foto">
+          </div>
+
+        </div>
+
+        <div class="col-2"></div>
+
+        <div class="col-md-5  ">
+
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input [(ngModel)]="user.nome" #nomeUser="ngModel" type="text" required maxlength="50"
+              placeholder="Digite o seu nome" class="rounded-pill form-control">
+
+            <h6 *ngIf="nomeUser.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+          </div>
+
+          <div class="form-group">
+            <label for="confirmSenha">Confirmar senha:</label>
+            <input [(ngModel)]="user.senha" #senhaUser="ngModel" minlength="8" class="form-control" type="password"
+              name="confirmSenha" id="confirmSenha" placeholder="Confirme sua senha">
+
+
+
+          </div>
+
+          <div class="form-group">
+            <label for="tipo">Tipo de Usuário</label>
+            <select class="form-control" name="tipo" id="tipo" (change)='tipoUser($event)'>
+              <option>Selecione um tipo de usuário:</option>
+              <option value="Cliente">Cliente</option>
+              <option value="Empresa">Empresa</option>
+              <option value="Pequena/Média comunidade de fazenda">Pequena/Média comunidade de fazenda</option>
+              <option value="ONG">ONG</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-12 pt-3 mt-5">
+          <div class="d-flex justify-content-center pb-5 mb-5">
+            <button type="submit" class="btn btn-success mr-3" (click)="cadastrar()">Cadastrar</button>
+            <button type="submit" class="btn btn-danger" routerLink="/inicio">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

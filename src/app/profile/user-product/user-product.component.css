@@ -1,0 +1,12 @@
+.fs-100{
+  font-size: 100px;
+}
+#minSize{
+  min-height: 250px;
+  max-height: 250px;
+
+}
+
+.card{
+  border: 1px solid red;
+}

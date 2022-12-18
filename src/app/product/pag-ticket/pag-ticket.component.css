@@ -1,0 +1,39 @@
+.minSize{
+  min-height: 464px;
+  min-width: 453px;
+  max-height: 464px;
+  max-width: 453px;
+}
+
+.linha-vertical {
+  height: 800px;
+  border-left: 2px solid;
+  left: 200px;
+}
+
+h3{
+  margin-top: 45px;
+}
+
+.borderSolid{
+  border: 2px solid rgb(145, 145, 145);
+  background-color: rgba(145, 145, 145, 0.397);
+}
+
+.card{
+  border: 1px solid red;
+}
+
+.fa-ticket{
+  color: rgb(226, 152, 14);
+  font-size: 20pt;
+}
+
+button{
+  background-color: orange;
+}
+
+.fa-shopping-cart{
+  color: rgb(223, 215, 200);
+  font-size: 20pt;
+}

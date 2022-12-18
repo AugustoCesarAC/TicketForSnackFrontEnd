@@ -1,0 +1,23 @@
+input{
+  border-radius: 500px;
+  padding-right: auto;
+}
+select{
+  border-radius: 500px;
+}
+
+#imgbg{
+  background-image: url('../../../assets/img/061E03.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 80vh;
+}
+
+#bgRegister{
+  background-color:#f4e4b494 !important;
+}
+
+label{
+  font-style: oblique;
+  font-weight: 700;
+}

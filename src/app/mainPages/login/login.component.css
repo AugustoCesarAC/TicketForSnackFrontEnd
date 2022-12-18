@@ -1,0 +1,19 @@
+input{
+  border-radius: 500px;
+}
+
+#imgbg{
+  background-image: url('https://cdn.discordapp.com/attachments/976239165073141780/997126074603409498/unknown.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 90vh;
+}
+
+#bgLogin{
+  background-color:#f4e4b4;
+}
+
+.textColor{
+  color: #f4e4b4;
+}
+

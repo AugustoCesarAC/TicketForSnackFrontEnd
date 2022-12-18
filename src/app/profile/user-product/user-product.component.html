@@ -1,0 +1,253 @@
+<div class="container pt-5">
+  <div class="row">
+
+    <div class="col-md-12 d-flex justify-content-center">
+      <img src="https://i.imgur.com/VRExaDX.png" alt="" width="100px" height="100px">
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-center mt-3 mb-3">
+      <h1>Seus Produtos</h1>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-center mt-3 mb-3">
+      <div class="form-group">
+
+        <input (input)="findByIdCategoria()" class="pr-5 pl-5 pt-2 pb-2 mr-2 rounded-pill" type="text" placeholder="Pesquise seus produtos">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-center mt-3 mb-3">
+      <button class="btn btn-success rounded-pill pr-4 pl-4 mr-3" data-toggle="modal"
+        data-target="#adicionar">Adicionar</button>
+    </div>
+
+    <div class="col-md-12">
+
+      <div class="row">
+        <div *ngFor="let item of usuario.produtos " class="col-md-3 mb-3 d-flex align-items-stretch">
+
+            <div class="card">
+              <img class="img-fluid" alt="100%x280" src="{{item.foto}}" (error)="verificaImagem($event)" id="minSize" width="250px" height="250px">
+              <div class="card-body" id="minSize">
+
+                <a [routerLink]="['/pag-ticket', item.id]"><h4 *ngIf="item.nomeTicket.length >= 15" class="card-title">{{item.nomeTicket.slice(0,15)}}...</h4>
+                <h4 *ngIf="item.nomeTicket.length < 15" class="card-title">{{item.nomeTicket}}</h4></a>
+
+                <p class="card-text">Preço: R${{item.valorTicket}}</p>
+                <small *ngIf="item.descricaoTicket.length >= 20"
+                  class="card-text">{{item.descricaoTicket.slice(0,20)}}...</small><br>
+                <small *ngIf="item.descricaoTicket.length < 20" class="card-text">{{item.descricaoTicket}}</small><br>
+                <small class="card-text">{{item.categorias.descricaoCategoria}}</small>
+                <div class="col d-flex justify-content-center mt-4">
+                  <button class="btn btn-success mr-3 rounded-pill pr-3 pl-3" data-toggle="modal" data-target="#editor"
+                    (click)="editar(item.id)">Editar</button>
+                  <button class="btn btn-danger rounded-pill pr-3 pl-3" data-toggle="modal" data-target="#apagar"
+                    (click)="apagar(item.id)">Apagar</button>
+                </div>
+
+              </div>
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-center my-5">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Adicionar -->
+<div class="modal fade" id="adicionar" tabindex="-1" role="dialog" aria-labelledby="adicionarTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="adicionarLongTitle">Adicionar produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <h3>Novo Ticket</h3>
+        </div>
+        <div class="form-group">
+          <label for="">Nome do Ticket:</label>
+          <input [(ngModel)]='produtoAdicionar.nomeTicket' #nomeProdutoAdd="ngModel" type="text" required maxlength="50"
+          placeholder="Digite o nome do Ticket" class="rounded-pill form-control">
+
+          <h6 *ngIf="nomeProdutoAdd.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+        </div>
+
+        <div class="form-group">
+          <label for="">Valor do Ticket:</label>
+          <input [(ngModel)]='produtoAdicionar.valorTicket' #valorProdutoAdd="ngModel" type="number" required placeholder="Digite o valor do Ticket" class="rounded-pill form-control">
+
+          <h6 *ngIf="valorProdutoAdd.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+          <h6>Valor máximo de R$9999.99</h6>
+
+        </div>
+        <div class="form-group">
+          <label for="">Descrição do Ticket:</label>
+          <input [(ngModel)]='produtoAdicionar.descricaoTicket' #descricaoProdutoAdd="ngModel" type="textarea" required maxlength="1000"
+          placeholder="Digite o nome do Ticket" class="rounded-pill form-control"
+            class="rounded-pill form-control">
+
+            <h6 *ngIf="descricaoProdutoAdd.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+
+        </div>
+
+        <div class="form-group">
+          <label for="">Imagem do Ticket:</label>
+          <input [(ngModel)]='produtoAdicionar.foto' type="text" id="imagemT" placeholder="Link da imagem ou deixe vazio" class="rounded-pill form-control">
+
+
+        </div>
+        <div class="form-group">
+          <label for="">Data e hora do Ticket:</label>
+          <input [(ngModel)]='produtoAdicionar.dataHoraTicket' #dataProdutoAdd="ngModel" required type="date" id="dataHoraT" class="rounded-pill form-control">
+
+            <h6 *ngIf="dataProdutoAdd.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+        </div>
+        <div class="form-group">
+          <label for="">Categoria do Ticket:</label>
+          <select name="categoria" id="categoria" class="form-control" [(ngModel)]="idCategoria"
+            (change)="findByIdCategoria()">
+            <option *ngFor="let item of listaCategorias" value="{{item.id}}">{{item.descricaoCategoria}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)='cadastrar()'>Acrescentar
+          produto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editor" tabindex="-1" role="dialog" aria-labelledby="editorTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editorLongTitle">Editar produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">ID do produto: {{produtoAlterar.id}}</label>
+        </div>
+        <div class="form-group">
+          <label for="">Nome do Ticket:</label>
+          <input [(ngModel)]='produtoAlterar.nomeTicket' #nomeProdutoAlterar="ngModel" type="text" required maxlength="50"
+          placeholder="Digite o nome do Ticket" class="rounded-pill form-control">
+
+          <h6 *ngIf="nomeProdutoAlterar.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+        </div>
+        <div class="form-group">
+          <label for="">Valor do Ticket:</label>
+          <input [(ngModel)]='produtoAlterar.valorTicket' #valorProdutoAlterar="ngModel" type="number" required placeholder="Digite o valor do Ticket" class="rounded-pill form-control">
+
+          <h6 *ngIf="valorProdutoAlterar.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+          <h6>Valor máximo de R$9999.99</h6>
+
+        </div>
+        <div class="form-group">
+          <label for="">Descrição do Ticket:</label>
+          <input [(ngModel)]='produtoAlterar.descricaoTicket' #descricaoProdutoAlterar="ngModel" type="textarea" required maxlength="1000"
+          placeholder="Digite o nome do Ticket" class="rounded-pill form-control"
+            class="rounded-pill form-control">
+
+            <h6 *ngIf="descricaoProdutoAlterar.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+
+        </div>
+        <div class="form-group">
+          <label for="">Imagem do Ticket:</label>
+          <input [(ngModel)]='produtoAlterar.foto' type="text" class="rounded-pill form-control">
+        </div>
+        <div class="form-group">
+          <label for="">Data e hora do Ticket:</label>
+          <input [(ngModel)]='produtoAlterar.dataHoraTicket' #dataProdutoAlterar="ngModel" required type="date" id="dataHoraT" class="rounded-pill form-control">
+
+          <h6 *ngIf="dataProdutoAlterar.errors?.['required']" class="font-weight-bold">Não pode ser vazio.</h6>
+
+        </div>
+        <div class="form-group">
+          <label for="">Selecione uma das categorias abaixo para alterar.</label>
+          <select [(ngModel)]="produtoAlterar.categorias" class="form-control">
+            <option *ngFor="let item of listaCategorias" [ngValue]="item">{{item.descricaoCategoria}}</option>
+          </select>
+          <small>Categoria anterior: {{produtoAlterar.categorias?.descricaoCategoria}}</small>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="atualizar()">Salvar Edições</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Apagar -->
+<div class="modal fade" id="apagar" tabindex="-1" role="dialog" aria-labelledby="apagarTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="apagarLongTitle">Deletar produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">ID do produto: {{produtoApagar.id}}</label>
+        </div>
+        <div class="form-group">
+          <label for="">Você tem certeza que gostaria de apagar o produto?</label>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletar()">Confirmar delete</button>
+      </div>
+    </div>
+  </div>
+</div>
